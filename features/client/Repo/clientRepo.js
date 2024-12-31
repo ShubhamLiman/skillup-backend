@@ -26,7 +26,7 @@ export const GetClients = async () => {
   console.log("in repo - get data");
 
   try {
-    const clients = await ClientModel.find({});
+    const clients = await ClientModel.find();
     return clients;
   } catch (error) {
     console.error("Error retrieving clients: ", error);
