@@ -18,8 +18,12 @@ app.use("/skillup/api/client", clientRouter);
 
 // Start the server
 app.listen(port, async () => {
-  await connectDb();
-  console.log(`Server is running on http://localhost:${port}`);
+  try {
+    await connectDb();
+    console.log(`Server is running on http://localhost:${port}`);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 export default app;
