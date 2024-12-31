@@ -23,6 +23,8 @@ export const registerClient = async (client) => {
 };
 
 export const GetClients = async () => {
+  console.log("in repo - get data");
+
   try {
     const clients = await ClientModel.find({});
     return clients;

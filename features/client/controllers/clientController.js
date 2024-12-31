@@ -1,7 +1,7 @@
 import { registerClient, GetClients } from "../Repo/clientRepo.js";
 
 export const register = async (req, res) => {
-  console.log(req.body);
+  c;
 
   try {
     const { name, email, phone, qualification, message } = req.body;
@@ -16,6 +16,7 @@ export const register = async (req, res) => {
 };
 
 export const getClients = async (req, res) => {
+  console.log("in controller - get data");
   try {
     const clients = await GetClients();
     res.status(200).json({ clients });
