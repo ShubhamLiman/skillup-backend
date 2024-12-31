@@ -1,8 +1,6 @@
 import { registerClient, GetClients } from "../Repo/clientRepo.js";
 
 export const register = async (req, res) => {
-  c;
-
   try {
     const { name, email, phone, qualification, message } = req.body;
     const client = { name, email, phone, qualification, message };
