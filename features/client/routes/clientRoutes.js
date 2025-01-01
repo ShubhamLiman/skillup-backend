@@ -1,11 +1,10 @@
 import express from "express";
-
+import { verifyToken } from "../../../middlewares/jwtAuth.js";
 const clientRouter = express.Router();
 
 import { register, getClients } from "../controllers/clientController.js";
-console.log("in routes - clients");
 
 clientRouter.post("/register", register);
-clientRouter.get("/clients", getClients);
+clientRouter.get("/clients", verifyToken, getClients);
 
 export default clientRouter;

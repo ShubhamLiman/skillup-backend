@@ -1,9 +1,6 @@
 import { ClientModel } from "../schema/clientSchema.js";
 export const registerClient = async (client) => {
-  console.log("in repo");
   try {
-    console.log("trying");
-
     const newClient = new ClientModel({
       name: client.name,
       email: client.email,
@@ -13,11 +10,15 @@ export const registerClient = async (client) => {
     });
 
     const clientSave = await newClient.save();
-    console.log(clientSave);
-    return { message: "registration unsuccessful", client: clientSave };
+
+    return { message: "registration successful", client: clientSave };
   } catch (error) {
-    console.log("failed");
-    console.error("Error adding document: ", error);
+    if (error.code === 11000) {
+      // Duplicate key error code
+      const duplicateKey = Object.keys(error.keyValue)[0];
+      return { error: `${duplicateKey} already exists` };
+    }
+    console.error("Error adding document: ", error.message);
     return { error: "registration unsuccessful" };
   }
 };

@@ -1,11 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
-const app = express();
-const port = process.env.PORT || 5000;
 import adminRouter from "./features/admin/Routers/adminRoutes.js";
 import clientRouter from "./features/client/routes/clientRoutes.js";
 import connectDb from "./config/mongoDb.js";
-
+const app = express();
+const port = process.env.PORT || 5000;
 app.use(
   cors({
     origin: "*", // Your frontend URL
@@ -21,17 +22,6 @@ app.get("/", (req, res) => {
   res.json("Hello World!");
 });
 
-// Define a simple route
-
-// Start the server
-// app.listen(port, async () => {
-//   try {
-//     await connectDb();
-//     console.log(`Server is running on http://localhost:${port}`);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
 connectDb().then(() => {
   try {
     app.listen(5000, () => {

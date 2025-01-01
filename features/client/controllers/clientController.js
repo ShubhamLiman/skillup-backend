@@ -5,6 +5,9 @@ export const register = async (req, res) => {
     const { name, email, phone, qualification, message } = req.body;
     const client = { name, email, phone, qualification, message };
     const clientId = await registerClient(client);
+    if (clientId.error) {
+      return res.status(400).json({ error: clientId.error });
+    }
     res
       .status(201)
       .send({ message: clientId.message, client: clientId.client });
