@@ -7,13 +7,7 @@ import clientRouter from "./features/client/routes/clientRoutes.js";
 import connectDb from "./config/mongoDb.js";
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(
-  cors({
-    origin: "*", // Your frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
-  })
-);
+app.use(cors());
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use("/skillup/api/admin", adminRouter);
